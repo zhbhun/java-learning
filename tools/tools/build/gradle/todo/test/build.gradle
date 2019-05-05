@@ -1,0 +1,37 @@
+task helloWorld {
+   println 'Hello World!'
+}
+
+task copyFile(type: Copy) {
+   from 'xml'
+   into 'destination'
+}
+
+task taskB() {
+  println 'Task B'
+}
+
+task taskA(dependsOn: taskB) {
+  println 'Task A'
+}
+
+helloWorld << {
+   println 'Hello 1!'
+}
+
+helloWorld {
+  doLast {
+      println 'Hello 2!'
+  }
+}
+
+helloWorld {
+  doFirst {
+      println 'Hello 3!'
+  }
+}
+
+task showTasks {
+   println tasks.class
+   println tasks.size()
+}
